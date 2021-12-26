@@ -1,0 +1,14 @@
+{% extends 'employee/base.html' %}
+
+{% block content %}
+
+<h2>Welcome {{ request.user }} </h2>
+<a href="{% url 'logout' %}">Logout</a>
+<div class="text-center space-between">
+    <button type="button" class="btn btn-warning">Update Your Account</button>
+    <button type="button" class="btn btn-danger">Delete Your Account</button>
+</div>
+
+
+
+{% endblock %}

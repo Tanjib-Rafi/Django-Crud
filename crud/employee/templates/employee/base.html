@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'employee/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'employee/css/style.css' %}">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
+    <title>Employee</title>
+</head>
+<body>
+    <div class="col-md-6 container mt-5">
+        <h2 class="text-center alert alert-danger">Testing Site</h2>
+        {% block content %} 
+
+        {% endblock content %}
+
+    </div>
+    
+    <footer class="text-center mt-5 mb-5">
+        Copyright 2021
+    </footer>
+
+
+    <script src="{% static 'employee/css/bootstrap.min.js' %}"></script>
+</body>
+</html>

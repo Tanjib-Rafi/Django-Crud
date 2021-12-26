@@ -1,0 +1,176 @@
+{% extends 'employee/base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>  
+<head>
+	<title>Insert</title>
+	<style>
+		body,
+		html {
+			margin: 0;
+			padding: 0;
+			height: 100%;
+			background: #7abecc !important;
+		}
+		.user_card {
+			width: 350px;
+			margin-top: auto;
+			margin-bottom: auto;
+			background: #74cfbf;
+			position: relative;
+			display: flex;
+			justify-content: center;
+			flex-direction: column;
+			padding: 10px;
+			box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-webkit-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			-moz-box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+			border-radius: 5px;
+
+		}
+
+		.form_container {
+			margin-top: 20px;
+		}
+
+		#form-title{
+			color: #fff;
+		}
+		.login_btn {
+			width: 100%;
+			background: orchid !important;
+			color: white !important;
+		}
+		.login_btn:focus {
+			box-shadow: none !important;
+			outline: 0px !important;
+		}
+		.login_container {
+			padding: 0 2rem;
+		}
+		.input-group-text {
+			background: #f7ba5b !important;
+			color: white !important;
+			border: 0 !important;
+			border-radius: 0.25rem 0 0 0.25rem !important;
+            height:40px;
+		}
+		.input_user,
+		.input_pass:focus {
+			box-shadow: none !important;
+			outline: 0px !important;
+		}
+	</style>
+</head>
+<body>
+	<div class="container h-200">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="d-flex justify-content-center">
+					<h3 id="form-title">REGISTER ACCOUNT</h3>
+				</div>
+				<div class="d-flex justify-content-center form_container" autocomplete="off">
+					<form method="POST" action="">
+                        {% csrf_token %}
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+								{{ form.name}}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-envelope-square"></i></span>
+							</div>
+							{{ form.email }}
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							{{ form.password }}
+						</div>
+                        <div class="input-group mb-3">
+                            <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-calendar-week"></i></span>
+                            </div>
+                            {{ form.date_of_birth}}
+                        </div>
+                        <div class="input-group mb-2">
+                            <div class="input-group-append">
+                            <span class="input-group-text"><i class="fas fa-venus-mars"></i></span>
+                            </div>
+                            <div class="mt-2">
+                                {{ form.gender}}
+                                </div>
+                        </div>  
+
+						<div class="input-group mb-2">
+                            <div class="input-group-append" style="margin-right: 40px;">
+                            <span class="input-group-text"><i class="fas fa-asterisk"></i></span>
+                            </div>
+							{{ form.role}} 
+						</div> 
+						
+                        <div class="input-group mb-2">
+                            {{ form.is_active }}
+                                {{ form.is_active.label}}
+                            </div>
+                        </div>
+				   		<div class="d-flex justify-content-center mt-3 login_container">
+				 			<input class="btn login_btn" type="submit" value="Register Account">
+				   		</div>
+						   {{forms.errors}}
+						   <div class="mt-4">
+							<div class="d-flex justify-content-center links">
+								Already have an account? <a href="{% url 'login' %}" class="ml-2">Login</a>
+							</div>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="container-fluid text-center mt-5">
+		<h4 class="mb-5">All Employees Information</h4>
+    {%if dis %}
+	<table class="table">
+		<thead>
+		  <tr>
+			<th scope="col">Name</th>
+			<th scope="col">Email</th>
+			<th scope="col">Date of Birth</th>
+			<th scope="col">Gender</th>
+			<th scope="col">Role</th>
+			<th scope="col">Action</th>
+		  </tr>
+		</thead>
+		<tbody>
+			{% for i in dis %}
+		  <tr>
+			<th scope="row">{{i.name}}</th>
+			<td>{{i.email}}</td>
+			<td>{{i.date_of_birth}}</td>
+			<td>{{i.gender}}</td>
+			<td>{{i.role}}</td>
+			<td>
+			<a href="{% url 'updatedata' i.id %}" class="btn btn-warning">Edit</a>
+			<form action="{% url 'deletedata' i.id  %}" method="post" class="d-inline">
+				{% csrf_token %}
+				<input type="submit" class="btn btn-danger" value="Delete">
+			</form>
+		    </td>
+		  </tr>
+		  {% endfor %}
+		</tbody>
+	  </table>
+
+	{%else %}
+	<h4 class="text-centeralert alert-warning">No Records</h4>
+	{% endif %}
+	</div>
+</body>
+</html>
+
+{% endblock content %} 

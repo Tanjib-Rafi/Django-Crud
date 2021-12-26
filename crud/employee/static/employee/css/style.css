@@ -1,0 +1,20 @@
+body{
+    font-weight: bold;
+}
+
+#id_gender
+{
+    list-style-type:none;
+    display: inline-flex;
+}
+
+#id_gender > li 
+{
+    padding-left: 5px;
+}
+
+#id_is_active
+{
+    margin-right:6px;
+    margin-top: 4px;
+}

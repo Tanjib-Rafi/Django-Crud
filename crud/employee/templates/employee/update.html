@@ -1,0 +1,16 @@
+{% extends 'employee/base.html' %}
+
+{% block content %} 
+
+<div class="row">
+    <div class="col-sm-8">
+        <h4 class="alert alert-info">Update</h4>
+        <form action="" method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-success" value="update">
+            <a href="{% url 'register' %}" class="btn btn-info">Back to Home</a>
+        </form>
+    </div>
+</div>
+{% endblock content %}
